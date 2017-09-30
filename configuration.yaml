@@ -1,0 +1,37 @@
+homeassistant:
+  name: Home 
+  temperature_unit: C 
+  latitude: !secret home_latitude
+  longitude: !secret home_longitude
+  elevation: !secret home_elevation
+  
+  unit_system: metric 
+  time_zone: !secret time_zone
+  #  customize_glob: !include customize_glob.yaml  
+  #  packages: !include_dir_named packages
+
+updater:
+discovery:
+sun:
+config:
+logbook:
+history:
+
+binary_sensor:
+  - platform: workday
+    country: DE 
+  - platform: rpi_gpio
+    ports:
+        23: doorbell
+
+notify:
+  - name: doorbell
+    platform: pushetta
+    api_key: a51a8a6b1326051b9e0a17b3435a2d4a09f2d525
+    channel_name: doorbell-private-sa
+
+shell_command:
+    doorbell: python /home/homeassistant/doorbell.py
+# logger: !include logging.yaml
+group: !include_dir_merge_named group
+automation: !include_dir_merge_list automation

@@ -1,0 +1,6 @@
+sleepingroom:
+        name: Schlafzimmer
+        entities:
+                - light.sz1
+                - light.sz2
+                - light.sz3

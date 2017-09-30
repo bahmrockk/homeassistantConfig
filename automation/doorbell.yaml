@@ -1,0 +1,11 @@
+- alias: 'Doorbell Toggle'
+  trigger:
+     platform: state 
+     entity_id: binary_sensor.doorbell 
+     to: 'on'
+  action:
+     - service: shell_command.doorbell
+       #     - service: notify.doorbell
+       #       data:
+       #          message: "Jemand hat an der Tür geklingelt."
+

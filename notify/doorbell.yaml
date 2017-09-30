@@ -1,0 +1,4 @@
+ - name: doorbell
+   platform: pushetta
+   api_key: a51a8a6b1326051b9e0a17b3435a2d4a09f2d525
+   channel_name: doorbell-private-sa

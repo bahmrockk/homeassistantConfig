@@ -1,0 +1,10 @@
+name: test
+entities:
+    light.floor_1: on
+        #state: on
+        #brightness: 255
+        # transition: 30
+    light.floor_2: on
+    #state: on
+    #brightness: 255
+        # transition: 30
