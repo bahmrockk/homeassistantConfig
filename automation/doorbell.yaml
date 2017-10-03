@@ -5,7 +5,12 @@
      to: 'on'
   action:
      - service: shell_command.doorbell
-       #     - service: notify.doorbell
-       #       data:
-       #          message: "Jemand hat an der Tür geklingelt."
+     - service: notify.kodi
+       data: 
+            message: "jemand klingelt an der Tür!"
+            data:
+                displaytime: 8000
+     - service: notify.pushetta
+       data:
+            message: "Jemand hat an der Tür geklingelt."
 

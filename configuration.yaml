@@ -11,6 +11,7 @@ homeassistant:
   #  packages: !include_dir_named packages
 
 updater:
+    include_used_components: True
 discovery:
 sun:
 config:
@@ -25,13 +26,54 @@ binary_sensor:
         23: doorbell
 
 notify:
-  - name: doorbell
+  - name: pushetta 
     platform: pushetta
     api_key: a51a8a6b1326051b9e0a17b3435a2d4a09f2d525
     channel_name: doorbell-private-sa
+
+  - name: kodi
+    platform: kodi
+    host: 10.0.1.96
 
 shell_command:
     doorbell: python /home/homeassistant/doorbell.py
 # logger: !include logging.yaml
 group: !include_dir_merge_named group
 automation: !include_dir_merge_list automation
+
+#device_tracker: !include_dir_merge_list device_tracker
+#sensor: !include_dir_merge_list sensor
+#scene: !include_dir_merge_list scene
+#switch: !include_dir_merge_list switch
+#script: !include_dir_merge_named script
+zone: !include_dir_merge_list  zone
+
+mqtt:
+    broker: ontilt.de
+    port: 8883
+    certificate: /home/homeassistant/ca.crt
+    #    client_key: /home/homeassistant/ontilt.de.key
+    #    client_cert: /home/homeassistant/ontilt.de.csr
+    client_id: 'ha'
+    username: !secret mqttusername 
+    password: !secret mqttpassword
+
+device_tracker:
+    - platform: owntracks
+
+script:
+    test_me:
+        sequence:
+            - service: light.turn_on
+              entity_id: 
+                 - light.sz2
+              data:
+                  brightness: 1
+            - delay: 
+                seconds: 5
+            - service: light.turn_on
+              entity_id: 
+                 - light.sz2
+              data:
+                  brightness: 2
+ 

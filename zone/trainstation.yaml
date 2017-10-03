@@ -1,0 +1,5 @@
+ - name: Steinfurther Allee
+   latitude: 53.541184
+   longitude: 10.139076
+   radius: 100
+   icon: mdi:tram
