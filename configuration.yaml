@@ -17,6 +17,15 @@ sun:
 config:
 logbook:
 history:
+tts:
+    - platform: google
+      language: 'de'
+
+media_player:
+    - platform: cast
+    - platform: kodi
+      name: 'Tequila Bar'
+      host: 10.0.1.96
 
 binary_sensor:
   - platform: workday
@@ -24,6 +33,7 @@ binary_sensor:
   - platform: rpi_gpio
     ports:
         23: doorbell
+        18: test
 
 notify:
   - name: pushetta 
@@ -31,7 +41,7 @@ notify:
     api_key: a51a8a6b1326051b9e0a17b3435a2d4a09f2d525
     channel_name: doorbell-private-sa
 
-  - name: kodi
+  - name: 'Tequila Bar'
     platform: kodi
     host: 10.0.1.96
 

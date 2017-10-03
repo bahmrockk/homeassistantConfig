@@ -8,6 +8,8 @@
 !sensor
 !package
 !zone 
+!binary_sensor
+!www
 
 !.gitignore
 secrets.yaml
