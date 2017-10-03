@@ -1,0 +1,16 @@
+- alias: 'Test Event'
+  trigger:
+     platform: state 
+     entity_id: binary_sensor.test
+     to: 'on'
+  action:
+     - service: notify.kodi
+       data: 
+            message: "test message!"
+            data:
+                displaytime: 8000
+     - service: tts.google
+       entity_id: 
+       data:
+            message: "Jemand hat an der Tür geklingelt."
+

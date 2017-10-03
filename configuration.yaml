@@ -47,16 +47,6 @@ notify:
 
 shell_command:
     doorbell: python /home/homeassistant/doorbell.py
-# logger: !include logging.yaml
-group: !include_dir_merge_named group
-automation: !include_dir_merge_list automation
-
-#device_tracker: !include_dir_merge_list device_tracker
-#sensor: !include_dir_merge_list sensor
-#scene: !include_dir_merge_list scene
-#switch: !include_dir_merge_list switch
-#script: !include_dir_merge_named script
-zone: !include_dir_merge_list  zone
 
 mqtt:
     broker: ontilt.de
@@ -86,4 +76,16 @@ script:
                  - light.sz2
               data:
                   brightness: 2
- 
+
+# logger: !include logging.yaml
+group: !include_dir_merge_named group
+automation: !include_dir_merge_list automation
+
+#device_tracker: !include_dir_merge_list device_tracker
+sensor: !include_dir_merge_list sensor
+#scene: !include_dir_merge_list scene
+#switch: !include_dir_merge_list switch
+#script: !include_dir_merge_named script
+zone: !include_dir_merge_list  zone
+proximity: !include_dir_merge_named proximity
+

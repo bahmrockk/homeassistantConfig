@@ -1,5 +1,6 @@
 *
 !*.yaml
+!*.old
 !scene
 !group
 !automation
@@ -10,6 +11,7 @@
 !zone 
 !binary_sensor
 !www
+!proximity 
 
 !.gitignore
 secrets.yaml

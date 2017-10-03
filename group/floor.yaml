@@ -1,4 +1,4 @@
-floorlights:
+floor:
         name: Flur EG
         entities: 
                 - light.flur_1

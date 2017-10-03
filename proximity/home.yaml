@@ -1,0 +1,4 @@
+home:
+    zone: Home
+    devices:
+        - group.Georg

@@ -1,0 +1,5 @@
+alldevices:
+    name: alldevices
+    view: no
+    entities:
+        - group.georg 

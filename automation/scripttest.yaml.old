@@ -1,0 +1,6 @@
+- alias: "SCript Trigger trigger"
+  trigger:
+       platform: state
+  action:
+       service: script.turn_on
+       entity_id: script.testscript
