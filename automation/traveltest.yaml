@@ -1,0 +1,10 @@
+- alias: 'Transit Test'
+  trigger:
+    - platform: numeric_state
+      entity_id: proximity.home
+      below: 10 
+      above: 1 
+  action:
+      service: notify.pushetta
+      data:
+        message: "Georg ist auf dem Weg nach Hause!"

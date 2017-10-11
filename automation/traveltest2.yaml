@@ -1,0 +1,9 @@
+- alias: 'Georg zur Arbeit (SFAllee)'
+  trigger:
+    - platform: zone 
+      entity_id: device_tracker.owntracks_georg_arbeitshandy
+      zone: zone.Steinfurther_Allee
+  action:
+    service: notify.pushetta
+    data:
+      message: "Georg ist an der Steinfurther Allee"

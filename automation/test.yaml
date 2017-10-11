@@ -1,0 +1,9 @@
+- alias: 'Doorsound Toggle'
+  trigger:
+     platform: state 
+     entity_id: binary_sensor.test
+     to: 'on'
+  action:
+    - service: switch.turn_on
+      entity_id: switch.doorbellswitch
+

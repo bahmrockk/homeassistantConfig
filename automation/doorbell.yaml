@@ -4,13 +4,12 @@
      entity_id: binary_sensor.doorbell 
      to: 'on'
   action:
-     - service: shell_command.doorbell
-     - service: notify.kodi
+     - service: notify.tequila_bar
        data: 
             message: "jemand klingelt an der Tür!"
             data:
                 displaytime: 8000
-     - service: notify.pushetta
-       data:
-            message: "Jemand hat an der Tür geklingelt."
+                #     - service: notify.pushetta
+                #data:
+                #message: "Jemand hat an der Tür geklingelt."
 

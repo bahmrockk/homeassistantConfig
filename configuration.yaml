@@ -30,10 +30,20 @@ media_player:
 binary_sensor:
   - platform: workday
     country: DE 
-  - platform: rpi_gpio
-    ports:
-        23: doorbell
-        18: test
+    #  - platform: rpi_gpio
+    #ports:
+        #    23: doorbell
+        #18: doorbell 
+        #    invert_logic: true
+        #bouncetime: 200
+        #pull_mode: DOWN 
+  - platform: tcp
+    name: doorbell
+    host: 127.0.0.1
+    port: 5555
+    payload: "\n"
+    value_on: "ON"
+
 
 notify:
   - name: pushetta 
@@ -60,6 +70,10 @@ mqtt:
 
 device_tracker:
     - platform: owntracks
+    - platform: nmap_tracker
+      hosts: 10.0.1.100-255
+      home_interval: 10
+      scan_option: " -sP"
 
 script:
     test_me:
@@ -81,6 +95,10 @@ script:
 group: !include_dir_merge_named group
 automation: !include_dir_merge_list automation
 
+switch:
+  - platform: rpi_gpio
+    ports:
+      24: doorbellswitch
 #device_tracker: !include_dir_merge_list device_tracker
 sensor: !include_dir_merge_list sensor
 #scene: !include_dir_merge_list scene

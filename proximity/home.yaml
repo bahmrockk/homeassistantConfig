@@ -2,3 +2,5 @@ home:
     zone: Home
     devices:
         - group.Georg
+    tolerance: 100
+    unit_of_measurement: km
