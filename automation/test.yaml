@@ -1,4 +1,4 @@
-- alias: 'Doorsound Toggle'
+- alias: 'file test automation'
   trigger:
      platform: state 
      entity_id: binary_sensor.test

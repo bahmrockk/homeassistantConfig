@@ -1,14 +1,14 @@
 - alias: 'Doorbell Toggle'
   trigger:
-     platform: state 
-     entity_id: binary_sensor.doorbell 
-     to: 'on'
+    platform: state 
+    entity_id: sensor.doorbell
+    to: 'ON'
   action:
-     - service: notify.tequila_bar
-       data: 
-            message: "jemand klingelt an der Tür!"
-            data:
-                displaytime: 8000
+    - service: notify.Tequila_Bar
+      data: 
+        message: "Status: {{states.sensor.file }}"
+        data:
+          displaytime: 8000
                 #     - service: notify.pushetta
                 #data:
                 #message: "Jemand hat an der Tür geklingelt."

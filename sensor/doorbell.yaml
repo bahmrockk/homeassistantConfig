@@ -1,0 +1,4 @@
+- platform: command_line
+  name: doorbell
+  command: "cat /tmp/doorbell_state.txt"
+  scan_interval: 3

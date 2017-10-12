@@ -44,29 +44,39 @@ if __name__ == '__main__':
 #    s= socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 #    s.bind((TCP_IP, TCP_PORT))
 #    s.listen(1)
-#    conn, addr = s.accept()
 
     GPIO.setmode(GPIO.BCM)
-    GPIO.setup(18, GPIO.IN)
+    DOORBELL_GPIO = 18
+    GPIO.setup(DOORBELL_GPIO, GPIO.IN)
+
     RELAIS_1_GPIO = 26 
+    GPIO.setup(RELAIS_1_GPIO, GPIO.OUT) # GPIO Modus 
     killer = GracefulKiller()
+
+    statefile = open('/tmp/doorbell_state.txt', 'w')
+ 
     try:
         logger.debug("start waiting for input")
         while True:
             if killer.kill_now:
                 break
 
-	    if (GPIO.input(18) == False):
+	    if (GPIO.input(DOORBELL_GPIO) == False):
 	        logger.info(time.strftime("%H:%M:%S") + ' Doorbell rang.\r')
-                GPIO.setup(RELAIS_1_GPIO, GPIO.OUT) # GPIO Modus 
+                statefile.seek(0)
+                statefile.truncate()
+                statefile.write('ON')
+                statefile.flush()
                 GPIO.output(RELAIS_1_GPIO, GPIO.LOW) # activate speaker 
- #               conn.send("ON\n")
                 play_mp3("/home/homeassistant/doorbell.mp3")
                 GPIO.output(RELAIS_1_GPIO, GPIO.HIGH) # deactivate speaker 
-#	        conn.send("OFF\n")
+                time.sleep(0.5)
+                statefile.seek(0)
+                statefile.write('OFF')
+                statefile.flush()
             time.sleep(0.2);
     except KeyboardInterrupt:
         pass
     GPIO.cleanup()
-    conn.close()
+    statefile.close()
     logger.info("Gracefully closed")
