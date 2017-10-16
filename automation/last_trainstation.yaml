@@ -1,0 +1,21 @@
+- alias: 'Georg zur Arbeit (SFAllee)'
+  trigger:
+    - platform: zone 
+      entity_id: device_tracker.owntracks_georg_arbeitshandy
+      zone: zone.Steinfurther_Allee
+  condition:
+    condition: and
+    conditions:
+      - condition: time
+        after: '12:00:00'
+        before: '03:00:00'
+        weekday:
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
+  action:
+    service: notify.slack
+    data:
+      message: "Georg ist an der Steinfurther Allee"

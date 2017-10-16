@@ -1,6 +1,6 @@
 home:
     zone: Home
     devices:
-        - group.Georg
-    tolerance: 100
-    unit_of_measurement: km
+        - device_tracker.owntracks_georg_arbeitshandy
+    tolerance: 50 
+    unit_of_measurement: m

@@ -42,7 +42,10 @@ notify:
     platform: pushetta
     api_key: !secret pushetta 
     channel_name: doorbell-private-sa
-
+  - name: slack
+    platform: slack
+    default_channel: '#general'
+    api_key: !secret slackbot
   - name: 'Tequila Bar'
     platform: kodi
     host: 10.0.1.96
