@@ -38,7 +38,7 @@ if __name__ == '__main__':
 
     GPIO.setmode(GPIO.BCM)
     DOORBELL_GPIO = 18
-    GPIO.setup(DOORBELL_GPIO, GPIO.IN)
+    GPIO.setup(DOORBELL_GPIO, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
     RELAIS_1_GPIO = 26 
     GPIO.setup(RELAIS_1_GPIO, GPIO.OUT) # GPIO Modus 

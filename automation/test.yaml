@@ -1,9 +1,0 @@
-- alias: 'file test automation'
-  trigger:
-     platform: state 
-     entity_id: binary_sensor.test
-     to: 'on'
-  action:
-    service: notify.slack
-    data:
-      message: "Testmessage!"

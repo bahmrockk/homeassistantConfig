@@ -1,15 +1,21 @@
-- alias: 'Doorbell Toggle'
+- alias: 'Doorbell Toggle On'
   trigger:
     platform: state 
     entity_id: sensor.doorbell
     to: 'ON'
   action:
-    - service: notify.Tequila_Bar
-      data: 
-        message: "Status: {{states.sensor.file }}"
-        data:
-          displaytime: 8000
-                #     - service: notify.pushetta
-                #data:
-                #message: "Jemand hat an der Tür geklingelt."
+    - service: homeassistant.turn_on
+      entity_id: light.Flur_Eingang
+
+- alias: 'Doorbell Toggle Off'
+  trigger:
+    platform: state 
+    entity_id: sensor.doorbell
+    to: 'OFF'
+    for:
+      minutes: 5
+  action:
+    - service: homeassistant.turn_off
+      entity_id: light.Flur_Eingang
+
 

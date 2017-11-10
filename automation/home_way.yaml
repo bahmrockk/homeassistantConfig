@@ -1,4 +1,4 @@
-- alias: 'Transit Test'
+- alias: 'Georg Transit Nach Hause'
   trigger:
     - platform: numeric_state
       entity_id: proximity.home
@@ -7,7 +7,7 @@
   condition:
     condition: and
     conditions:
-  	  - condition: template
+      - condition: template
         value_template: '{{ states.proximity.home.attributes.dir_of_travel == "towards" }}'
   action:
       service: notify.slack

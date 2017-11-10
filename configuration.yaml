@@ -9,6 +9,19 @@ homeassistant:
   time_zone: !secret time_zone
   #  customize_glob: !include customize_glob.yaml  
   #  packages: !include_dir_named packages
+  customize:
+    device_tracker.6cadf8a560de:
+      hidden: true
+    device_tracker.546009fa86e6:
+      hidden: true
+    device_tracker.546009eeeaf0:
+      hidden: true
+    device_tracker.7c7a910d9558:
+      hidden: true
+    device_tracker.b072bf257729:
+      hidden: true
+    device_tracker.08d42b1e8b82:
+      hidden: true
 
 updater:
     include_used_components: True
@@ -30,12 +43,13 @@ media_player:
 binary_sensor:
   - platform: workday
     country: DE 
-    #  - platform: rpi_gpio
-    #ports:
-        #18: doorbell 
-        #    invert_logic: true
-        #bouncetime: 200
-        #pull_mode: DOWN 
+#  - platform: rpi_gpio
+#    ports:
+#       18: hass_doorbell 
+#       #value_high: "On"
+#       #value_low: "Off"
+#    scan_interval: 300
+#    bouncetime: 250
 
 notify:
   - name: pushetta 
@@ -50,15 +64,10 @@ notify:
     platform: kodi
     host: 10.0.1.96
 
-shell_command:
-    doorbell: python /home/homeassistant/doorbell.py
-
 mqtt:
     broker: ontilt.de
     port: 8883
     certificate: /home/homeassistant/ca.crt
-    #    client_key: /home/homeassistant/ontilt.de.key
-    #    client_cert: /home/homeassistant/ontilt.de.csr
     client_id: 'ha'
     username: !secret mqttusername 
     password: !secret mqttpassword
@@ -69,15 +78,12 @@ device_tracker:
       hosts: 10.0.1.100-255
       home_interval: 10
       scan_option: " -sP"
+      track_new_devices: "False"
 
 # logger: !include logging.yaml
 group: !include_dir_merge_named group
 automation: !include_dir_merge_list automation
 
-switch:
-  - platform: rpi_gpio
-    ports:
-      24: doorbellswitch
 #device_tracker: !include_dir_merge_list device_tracker
 sensor: !include_dir_merge_list sensor
 #scene: !include_dir_merge_list scene

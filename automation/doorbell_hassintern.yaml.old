@@ -1,0 +1,15 @@
+- alias: 'Doorbell-Intern Toggle'
+  trigger:
+    platform: state 
+    entity_id: binary_sensor.hass_doorbell
+    to: 'On'
+  action:
+    - service: notify.Tequila_Bar
+      data: 
+        message: "Jemand hat an der Tuer geklingelt"
+        data:
+          displaytime: 10000
+                #     - service: notify.pushetta
+                #data:
+                #message: "Jemand hat an der Tür geklingelt."
+
