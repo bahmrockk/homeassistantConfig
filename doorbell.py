@@ -9,11 +9,6 @@ import fcntl, sys
 import signal
 import socket
 
-
-TCP_IP = '127.0.0.1'
-TCP_PORT = 4444 
-BUFFER_SIZE = 1024
-
 logger = logging.getLogger('doorbell')
 logger.setLevel(logging.DEBUG)
 fh = logging.FileHandler('/tmp/doorbell.log')
@@ -40,10 +35,6 @@ if __name__ == '__main__':
 
     def play_mp3(path):
         subprocess.Popen(['mpg123', '-q', path]).wait()
-
-#    s= socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-#    s.bind((TCP_IP, TCP_PORT))
-#    s.listen(1)
 
     GPIO.setmode(GPIO.BCM)
     DOORBELL_GPIO = 18
