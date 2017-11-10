@@ -1,8 +1,8 @@
 - alias: 'Doorbell Toggle On'
   trigger:
     platform: state 
-    entity_id: sensor.doorbell
-    to: 'ON'
+    entity_id: switch.doorbell_triggered
+    to: 'on'
   action:
     - service: homeassistant.turn_on
       entity_id: light.Flur_Eingang
@@ -10,8 +10,8 @@
 - alias: 'Doorbell Toggle Off'
   trigger:
     platform: state 
-    entity_id: sensor.doorbell
-    to: 'OFF'
+    entity_id: switch.doorbell_triggered
+    to: 'off'
     for:
       minutes: 5
   action:

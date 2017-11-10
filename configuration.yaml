@@ -22,6 +22,12 @@ homeassistant:
       hidden: true
     device_tracker.08d42b1e8b82:
       hidden: true
+    device_tracker.28d244588a72:
+      hidden: true
+    device_tracker.acbc32b62f2f:
+      hidden: true
+    device_tracker.fcc2de514e8d:
+      hidden: true
 
 updater:
     include_used_components: True
@@ -80,6 +86,11 @@ device_tracker:
       scan_option: " -sP"
       track_new_devices: "False"
 
+input_boolean:
+  test_bool:
+    name: testme
+    initial: off
+
 # logger: !include logging.yaml
 group: !include_dir_merge_named group
 automation: !include_dir_merge_list automation
@@ -87,7 +98,7 @@ automation: !include_dir_merge_list automation
 #device_tracker: !include_dir_merge_list device_tracker
 sensor: !include_dir_merge_list sensor
 #scene: !include_dir_merge_list scene
-#switch: !include_dir_merge_list switch
+switch: !include_dir_merge_list switch
 #script: !include_dir_merge_named script
 zone: !include_dir_merge_list  zone
 proximity: !include_dir_merge_named proximity

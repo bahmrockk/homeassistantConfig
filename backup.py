@@ -8,14 +8,9 @@ import logging
 import fcntl, sys
 import signal
 import socket
-import requests
 
-url = "http://localhost:8123/api/states/switch.doorbell_triggered"
-headers = {"Content-Type: application/json"}
-
-data_state_on = "{\"state\": \"on\"}"
-data_state_off = "{\"state\": \"off\"}"
-
+#sys.path.append('/srv/homeassistant/')
+import homeassistant.remote as remote
 
 logger = logging.getLogger('doorbell')
 logger.setLevel(logging.DEBUG)
@@ -52,6 +47,8 @@ if __name__ == '__main__':
     GPIO.setup(RELAIS_1_GPIO, GPIO.OUT) # GPIO Modus 
     killer = GracefulKiller()
 
+    statefile = open('/tmp/doorbell_state.txt', 'w')
+ 
     try:
         logger.debug("start waiting for input")
         while True:
@@ -60,17 +57,20 @@ if __name__ == '__main__':
 
 	    if (GPIO.input(DOORBELL_GPIO) == False):
                 logger.info(time.strftime("%H:%M:%S") + ' Doorbell rang.\r')
-                #fire & forget HASS
-                requests.post(url, data=data_state_on, headers={"Content-Type": "application/json"})
-                
+                statefile.seek(0)
+                statefile.truncate()
+                statefile.write('ON')
+                statefile.flush()
                 GPIO.output(RELAIS_1_GPIO, GPIO.LOW) # activate speaker 
                 play_mp3("/home/homeassistant/doorbell.mp3")
                 GPIO.output(RELAIS_1_GPIO, GPIO.HIGH) # deactivate speaker 
                 time.sleep(0.5)
-                requests.post(url, data=data_state_off, headers={"Content-Type": "application/json"})
-                
+                statefile.seek(0)
+                statefile.write('OFF')
+                statefile.flush()
             time.sleep(0.2);
     except KeyboardInterrupt:
         pass
     GPIO.cleanup()
+    statefile.close()
     logger.info("Gracefully closed")
